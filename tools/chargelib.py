@@ -12,8 +12,8 @@ amount['auto_transport'] = 0
 
 
 
-charges['bars_dining'] = ['Ostra']
-amount['bars_dining'] = 0
+charges['bars_eatingout'] = ['cci' , 'sandwich']
+amount['bars_eatingout'] = 0
 
 
 
@@ -22,7 +22,7 @@ amount['bills'] = 0
 
 
 
-charges['groceries'] = ['bfresh' , 'market' ,'rite']
+charges['groceries'] = ['bfresh' , 'market' ,'rite' , 'market@work']
 amount['groceries'] = 0
 
 
@@ -32,7 +32,7 @@ amount['misc'] = 0
 
 
 
-charges['payment'] = ['payment']
+charges['payment'] = ['payment' , 'payment,']
 amount['payment'] = 0
 
 
