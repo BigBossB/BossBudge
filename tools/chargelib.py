@@ -7,12 +7,16 @@ amount['alcohal'] = 0
 
 
 charges['auto_transport'] = ['titan' , 'exxonmobil' , 'shell' , 'brookline',
-       'burlington', 'parkticket' , 'parking'] 
+       'burlington', 'parkticket' , 'parking' , 'mbta' , 'gulf' ,'uber' , 'mobil'] 
 amount['auto_transport'] = 0
 
 
 
-charges['bars_eatingout'] = ['cci' , 'sandwich']
+charges['bars_eatingout'] = ['cci' , 'sandwich' , 'pokeworks' , 'chipotle' , 
+       'panera' ,'dunkin' ,'pilot' ,'taipei' ,'cascade' ,'shift' 'tavern' ,'*blue',
+       'jillians' , 'foodler' , 'roaster' ,'cream' ,'hopsters' ,'smoked' , 'jimmy',
+       'taqueria' ,'rosebud' , 'waxys' ,'trailhouse' ,'donuts' ,'roxys' ,'fabrica' ,
+       'grubhubwasabiatporter' ,'peirce']
 amount['bars_eatingout'] = 0
 
 
@@ -22,13 +26,13 @@ amount['bills'] = 0
 
 
 
-charges['groceries'] = ['bfresh' , 'market' ,'rite' , 'market@work']
+charges['groceries'] = ['bfresh' , 'market' ,'rite' , 'market@work' ,'shop' ,'wholefds']
 amount['groceries'] = 0
 
 
 
-charges['misc'] = ['something']
-amount['misc'] = 0
+charges['misc-gifts'] = ['something' ,'florist' ,'staples' , 'google' , 'cvs/pharmacy']
+amount['misc-gifts'] = 0
 
 
 
@@ -42,11 +46,12 @@ amount['shopping'] = 0
 
 
 
-charges['sports'] = ['marathon']
+charges['sports'] = ['marathon' , 'loon' ,'ath-bostons-run-to-rem' ,'gore' , 'ski','tent']
 amount['sports'] = 0
 
+charges['subscriptions'] = ['*xbox']
+amount['subscriptions'] = 0
 
-
-charges['travel'] = ['united']
+charges['travel'] = ['united' ,'travel' , 'contamines']
 amount['travel'] = 0
 
