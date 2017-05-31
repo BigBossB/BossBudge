@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from tools import chargelib
 
-def monthly(month):
+class monthly(month):
     df = pd.read_csv(month.write_path, index_col=0)
 
     categories = list(chargelib.charges.keys())    
@@ -14,7 +14,8 @@ def monthly(month):
 
     return amounts
     
-#def annual:(df)    
-    
+#def annual(summary):(df)    
+# another class instantiation    
 
-
+    def plot(self):
+        
