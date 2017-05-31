@@ -18,4 +18,8 @@ print(month.out[month.out.Category == 'X'])
 
 # Read the sumary reports (generated .csv files)
 amounts = summary.monthly(month)
+
+
+
+
 amounts.plot()
