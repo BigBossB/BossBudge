@@ -1,5 +1,4 @@
-import bokeh.plotting as bk
-from bokeh.models import HoverTool
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 from tools import chargelib
@@ -18,53 +17,48 @@ class monthly:
         self.amounts = amounts
     
     def plot(self):
-        X = amounts.amounts.keys()
-        Y = amounts.amounts.values()
+        Type = list(self.amounts.keys())
+        Amounts = list(self.amounts.values())
+        
+        df = pd.DataFrame({'types' : Type , 'amounts' : Amounts})
+        gtz = df['amounts'] > 0
+        df = df[gtz]
+        df = df.sort_values('amounts', ascending=False)
+        
+        Type = list(df['types'].get_values())
+        Amounts = list(df['amounts'].get_values())
+        
+        for k in [-1 , -2, -3]:
+            first = Amounts[-1*k]
+            second = Amounts[k]
+            Amounts[-1*k] = second
+            Amounts[k] = first
+        
+        for k in [-1 , -2, -3]:
+            first = Type[-1*k]
+            second = Type[k]
+            Type[-1*k] = second
+            Type[k] = first
+            
+        
+        def make_autopct(values):
+            def my_autopct(pct):
+                total = sum(values)
+                val = pct*total/100.0
+                return '${v:.2f} ({p:.2f}%)  '.format(p=pct,v=val)
+            return my_autopct
+
+        fig1, ax1 = plt.subplots(figsize=(12, 12))
+        ax1.pie(Amounts, labels=Type, autopct = make_autopct(Amounts),
+                shadow=True, startangle=90)
+        ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+        
+        plt.show()
+        
         
 #def annual(summary):(df)    
 # another class instantiation    
 
-    def plot(self):
-        # define starts/ends for wedges from percentages of a circle
-        percents = [0, 0.3, 0.4, 0.6, 0.9, 1]
-        starts = [p*2*pi for p in percents[:-1]]
-        ends = [p*2*pi for p in percents[1:]]
-        
-        # a color for each pie piece
-        colors = ["red", "green", "blue", "orange", "yellow"]
-        
-        
-        # Not Working
-        p = bk.figure(x_range=(-1,1), y_range=(-1,1))
-        
-        # Not Working        
-        p.circle('x', 'y', size=20, source=source)
-        
-        
-        # Working
-        source = bk.ColumnDataSource(
-                data=dict(
-                    x=amounts.amounts.keys(),
-                    y=amounts.amounts.values(),            
-                )
-            )
-        
-        # Working
-        hover = HoverTool(
-                tooltips=[
-                    ("Amount", "@x"),
-                    ("Category", "@y")
-                    
-                ]
-            )
 
-        
-        # Working?        
-        p = bk.figure(plot_width=400, plot_height=400, tools=[hover],
-                   title="Mouse over the dots")
-
-        
-        # Working                
-        bk.show(p)
 
         

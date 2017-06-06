@@ -3,9 +3,9 @@ from tools import statements , summary
 
 
 # Setup directories
-month_dir = '/home/tyto/Documents/Finances/statements/2017/January/'
-write_path = '/home/tyto/Documents/Finances/statements/2017/summary/april_summary.csv'
-write = False
+month_dir = '/home/tyto/Documents/Finances/statements/2017/March/'
+write_path = '/home/tyto/Documents/Finances/statements/2017/summary/march_summary.csv'
+write = True
 
 
 # Proess all statements in the directory
@@ -18,8 +18,4 @@ print(month.out[month.out.Category == 'X'])
 
 # Read the sumary reports (generated .csv files)
 amounts = summary.monthly(month)
-
-
-
-
 amounts.plot()
