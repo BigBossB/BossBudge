@@ -28,17 +28,23 @@ class monthly:
         Type = list(df['types'].get_values())
         Amounts = list(df['amounts'].get_values())
         
-        for k in [-1 , -2, -3]:
-            first = Amounts[-1*k]
-            second = Amounts[k]
-            Amounts[-1*k] = second
-            Amounts[k] = first
+        # Switch first and second 
+        _famt = Amounts[0]; _samt = Amounts[1]
+        _ftype = Type[0]; _stype = Type[1]
+        Amounts[0] = _samt; Amounts[1] = _famt
+        Type[0] = _stype; Type[1] = _ftype
         
         for k in [-1 , -2, -3]:
-            first = Type[-1*k]
-            second = Type[k]
-            Type[-1*k] = second
-            Type[k] = first
+            top = Amounts[-1*k]
+            bottom = Amounts[k]
+            Amounts[-1*k] = bottom
+            Amounts[k] = top
+        
+        for k in [-1 , -2, -3]:
+            top = Type[-1*k]
+            bottom = Type[k]
+            Type[-1*k] = bottom
+            Type[k] = top
             
         
         def make_autopct(values):
