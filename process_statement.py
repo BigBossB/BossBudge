@@ -3,8 +3,8 @@ from tools import statements , summary
 
 
 # Setup directories
-month_dir = '/home/tyto/Documents/Finances/statements/2017/January/'
-write_path = '/home/tyto/Documents/Finances/statements/2017/summary/march_summary.csv'
+month_dir = '/home/tyto/Documents/Finances/statements/2017/June/'
+write_path = '/home/tyto/Documents/Finances/statements/2017/summary/april_summary.csv'
 write = False
 
 
@@ -18,4 +18,7 @@ print('Charges Read: %i. Charges Sorted: %i' % (month.df['Amount'].count() , mon
 
 # Read the sumary reports (generated .csv files)
 amounts = summary.monthly(month)
-#amounts.plot()
+amounts.plot()
+
+# Print out individual categories for inspection
+#month.out[month.out['Category'] == 'shopping']

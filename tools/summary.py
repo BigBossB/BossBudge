@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import os
 import pandas as pd
 import numpy as np
 from tools import chargelib
@@ -8,6 +9,8 @@ class monthly:
     def __init__(self, month):
         df = pd.read_csv(month.write_path, index_col=0)
 
+        df = df[ df['Category'] != 'payment']
+
         categories = list(chargelib.charges.keys())    
         amounts = dict()
     
@@ -15,6 +18,8 @@ class monthly:
             amounts[c] = np.round(np.sum(df[df['Category'] == c]['Amount']), decimals=2)
 
         self.amounts = amounts
+    
+        
     
     def plot(self):
         Type = list(self.amounts.keys())
@@ -62,9 +67,34 @@ class monthly:
         plt.show()
         
         
-#def annual(summary):(df)    
-# another class instantiation    
+class annual:
+     
+    def __init__(self, summary_dir):
+        self.summary_dir = summary_dir
+        self.summary = dict()
+        files = os.listdir(summary_dir)
+        self.months = ['january' , 'february' , 'march' , 'april', 'may' , 'june']
+        for f in files:
+            for m in self.months:
+                if m in f:
+                    name = summary_dir + f
+                    df = pd.read_csv(name, index_col=0)
+            
+                    df = df[ df['Category'] != 'payment']
+            
+                    categories = list(chargelib.charges.keys())    
+                    amounts = dict()
+                
+                    for c in categories:
+                        amounts[c] = np.round(np.sum(df[df['Category'] == c]['Amount']), decimals=2)
+                    Type = list(amounts.keys())
+                    Amounts = list(amounts.values())
+            
+                    self.summary[m] = {'Category' : Type, 'Amounts' : Amounts}
 
-
+    def plot(self):
+        for m in self.months:
+            category = self.summary[m]['Category']
+            amounts = self.summary[m]['Amounts']
 
         

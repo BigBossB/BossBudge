@@ -44,8 +44,8 @@ class month:
             
         data = {'Category' : category, 'Description' : desc , 'Amount' : amt}
         out = pd.DataFrame(data)
-#        self.out = out
-        self.out = out[ out['Category'] != 'payment']
+        self.out = out
+        #self.out = out[ out['Category'] != 'payment']
         
     def get_charge_type(self, desc, amt):
         
