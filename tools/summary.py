@@ -73,28 +73,37 @@ class annual:
         self.summary_dir = summary_dir
         self.summary = dict()
         files = os.listdir(summary_dir)
-        self.months = ['january' , 'february' , 'march' , 'april', 'may' , 'june']
-        for f in files:
-            for m in self.months:
+        self.months = ['january' , 'february' , 'march' , 'april', 'may' , 'june', 'july']
+        self.Amounts = []
+        for m in self.months:
+            for f in files:            
                 if m in f:
                     name = summary_dir + f
                     df = pd.read_csv(name, index_col=0)
-            
-                    df = df[ df['Category'] != 'payment']
-            
+                        
                     categories = list(chargelib.charges.keys())    
                     amounts = dict()
-                
+                    
+                    df = df[ df['Category'] != 'payment']
+                    
+                    
+                    
                     for c in categories:
-                        amounts[c] = np.round(np.sum(df[df['Category'] == c]['Amount']), decimals=2)
-                    Type = list(amounts.keys())
-                    Amounts = list(amounts.values())
+                        if c != 'payment':
+                            amounts[c] = np.round(np.sum(df[df['Category'] == c]['Amount']), decimals=2)
+                    self.Type = list(amounts.keys())
+                    self.Amounts.append(list(amounts.values()))
             
-                    self.summary[m] = {'Category' : Type, 'Amounts' : Amounts}
+#                    self.summary[m] = {'Category' : Type, 'Amounts' : Amounts}
 
     def plot(self):
-        for m in self.months:
-            category = self.summary[m]['Category']
-            amounts = self.summary[m]['Amounts']
-
+        money_matrix = np.array(self.Amounts)
+        plt.figure(figsize=(15,10))
+        for count , p in enumerate(money_matrix.T):
+            
+            plt.plot(p, hold=True, linewidth=2, label = self.Type[count])
+        plt.xticks(range(len(self.months)), self.months)
+        plt.legend()        
+            
+            
         
